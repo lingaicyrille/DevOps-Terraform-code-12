@@ -11,12 +11,13 @@ provider "aws" {
   
   region = "us-east-1"
 }
+/*
 resource "aws_instance" "demo1" {
 ami = "ami-0a699202e5027c10d"
 instance_type = "t2.micro"
 vpc_security_group_ids = ["vpc-0525c2b5c5a7c81fe"]
 }
-
+*/
 # Generated the secure key and encrypted to PEM format
 resource "tls_private_key" "my_ec2_key" {
   algorithm = "RSA"
@@ -33,7 +34,7 @@ resource "local_file" "ssh_key" {
    content = tls_private_key.my_ec2_key.private_key_pem
 }
 
-resource "aws_instance" "demo" {
+resource "aws_instance" "demo1" {
   ami = "ami-0a699202e5027c10d"
   instance_type = "t2.micro"
   key_name = "week12key"
